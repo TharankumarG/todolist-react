@@ -1,0 +1,203 @@
+/* Reset + base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(270deg, #74ebd5, #ACB6E5, #ff9a9e, #fad0c4);
+  background-size: 800% 800%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* Animate gradient background */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main container */
+.todo-container {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.todo-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input + button */
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-box input {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box input:focus {
+  border-color: #74ebd5;
+  box-shadow: 0 0 10px rgba(116, 235, 213, 0.6);
+}
+
+.input-box button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #74ebd5, #4cc9f0);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.input-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(76, 201, 240, 0.5);
+}
+
+/* Task list */
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s ease;
+  animation: slideIn 0.4s ease forwards;
+  word-break: break-word;
+}
+
+/* Slide animation for new tasks */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+li:hover {
+  transform: translateY(-2px);
+  background: #f0f0f0;
+}
+
+li.done {
+  text-decoration: line-through;
+  color: #888;
+  background: #e0e0e0;
+  animation: fadeDone 0.3s ease-in-out;
+}
+
+@keyframes fadeDone {
+  from { background: #f8f8f8; }
+  to { background: #e0e0e0; }
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.actions button:hover {
+  transform: scale(1.1);
+}
+
+.done-btn {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  color: #fff;
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #f44336, #e57373);
+  color: #fff;
+}
+
+.done-btn:hover { box-shadow: 0 4px 10px rgba(76,175,80,0.5); }
+.delete-btn:hover { box-shadow: 0 4px 10px rgba(244,67,54,0.5); }
+
+/* Phones */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .todo-container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .input-box {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-box button {
+    width: 100%;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
